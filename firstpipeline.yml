@@ -1,0 +1,30 @@
+# Demo pipeline: jobs print messages without building or deploying anything.
+stages:
+  - validate
+  - build
+  - test
+  - deploy
+
+validate:
+  stage: validate
+  script:
+    - echo '[VALIDATE] Checking project configuration...'
+    - echo '[VALIDATE] Dummy validation completed.'
+
+build:
+  stage: build
+  script:
+    - echo '[BUILD] Preparing a simulated build...'
+    - echo '[BUILD] Dummy build completed. No artifacts were created.'
+
+test:
+  stage: test
+  script:
+    - echo '[TEST] Simulating unit and integration tests...'
+    - echo '[TEST] Dummy tests completed. No real tests were executed.'
+
+deploy:
+  stage: deploy
+  script:
+    - echo '[DEPLOY] Simulating deployment...'
+    - echo '[DEPLOY] Dummy deployment completed. No environment was changed.'
