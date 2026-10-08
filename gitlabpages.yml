@@ -1,15 +1,8 @@
-﻿# GitLab Pages deployment for this static site.
-# Include this file from .gitlab-ci.yml, or rename it to .gitlab-ci.yml.
-stages:
-  - deploy
-
-pages:
+﻿pages:
   stage: deploy
-  image: alpine:latest
   script:
-    - mkdir -p public
-    - cp index.html public/index.html
+    - echo "Publishing GitLab Pages site"
+  pages: true
   artifacts:
     paths:
       - public
-  
