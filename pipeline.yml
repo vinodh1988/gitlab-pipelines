@@ -1,0 +1,15 @@
+
+stages:
+  - deploy
+deploy_to_ubuntu_vm:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh  # Install SSH client
+    - echo "$SSH_PRIVATE_KEY" > /tmp/vinodh.pem  # Write the SSH key to a file
+    - chmod 600 /tmp/vinodh.pem  # Set appropriate permissions for the SSH key
+  script:
+    - ssh -o StrictHostKeyChecking=no -i /tmp/vinodh.pem  ubuntu@13.204.84.236 "sudo rm -rf /var/www/html/*"  # Clear the existing website files
+    - scp -o StrictHostKeyChecking=no -i /tmp/vinodh.pem -r *  ubuntu@13.204.84.236:/var/www/html/  # Copy new website files to the server
+  only:
+    - main
