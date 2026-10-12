@@ -1,0 +1,9 @@
+image: python:3.11
+
+stages:
+  - run
+
+run_app:
+  stage: run
+  script:
+    - python app.py
